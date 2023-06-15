@@ -25,7 +25,7 @@ class Book {
           <div class="front">
             <div class="cover">
               <p class="title">${this.title}</p>
-              <p class="pages">num of pages ${this.numPages}</p>
+              <p class="pages">№ of pages ${this.numPages}</p>
               <p class="author">by ${this.author}</p>
             </div>
           </div>
@@ -34,10 +34,15 @@ class Book {
               <i class="fa-solid fa-check fa-rotate-270 btn-read" style="color: #000000;" id="check"></i>
               <i class="fa-solid fa-trash fa-rotate-270 btn-delete" style="color: #000000;" data-id="${this.id}"></i>
             </div>
-            <h2 class="page-title">
-              <span id="author">${this.author}</span>
-              <span id="pages">${this.numPages}</span>
-            </h2>
+
+            <div class="page-title">
+
+              <div class="joder">
+                <span id="author">${book.title}</span>
+              </div>
+
+          </div>
+
           </div>
         </div>
       </div>
@@ -133,7 +138,7 @@ function createBookElement(book) {
         <div class="front">
           <div class="cover">
             <p class="title">${book.title}</p>
-            <p class="pages">num of pages ${book.numPages}</p>
+            <p class="pages">№ of pages ${book.numPages}</p>
             <p class="author">by ${book.author}</p>
           </div>
         </div>
@@ -142,10 +147,13 @@ function createBookElement(book) {
             <i class="fa-solid fa-check btn-read" style="color: #000000;" id="check"></i>
             <i class="fa-solid fa-trash btn-delete" style="color: #000000;" data-id="${book.id}"></i>
           </div>
-          <h2 class="page-title">
-            <span id="author">${book.author}</span>
-            <span id="pages">${book.numPages}</span>
-          </h2>
+
+        <div class="page-title">
+          <div class="joder">
+            <span id="author">${book.title}</span>
+          </div>
+        </div>
+
         </div>
       </div>
     </div>
