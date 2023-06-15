@@ -7,30 +7,47 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <section class="inputs">
-      <div class="card">
-        <div>
-          <p>Title</p>
-          <input type="text" id="title" />
+    <div class="titleBody">
+      <h2 class="">Library</h2>
+      <button id="myBtn">Add new book</button>
+    </div>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2>Add new book</h2>
         </div>
-        <div>
-          <p>Author</p>
-          <input type="text" id="author" />
+        <div class="modal-body">
+          <div id="myModal">
+            <div>
+              <p>Title</p>
+              <input type="text" id="title" />
+            </div>
+            <div>
+              <p>Author</p>
+              <input type="text" id="author" />
+            </div>
+            <div>
+              <p>Pages</p>
+              <input type="text" id="pages" />
+            </div>
+            <div>
+              <p>Read?</p>
+              <input type="checkbox" id="readBoolean" />
+            </div>
+          </div>
         </div>
-        <div>
-          <p>Pages</p>
-          <input type="text" id="pages" />
+        <div class="modal-footer">
+          <button type="submit" id="submit">Submit</button>
         </div>
-        <div>
-          <p>Read?</p>
-          <input type="text" id="readBoolean" />
-        </div>
-        <button type="submit" id="submit">Submit</button>
       </div>
-    </section>
-    <section>
-      <div id="books"></div>
-    </section>
+    </div>
+    <div id="books"></div>
+    <script
+      src="https://kit.fontawesome.com/e39879df32.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="app.js"></script>
   </body>
 </html>
