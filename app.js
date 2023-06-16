@@ -2,7 +2,7 @@ const title = document.getElementById("title");
 const author = document.getElementById("author");
 const numPages = document.getElementById("pages");
 const submit = document.getElementById("submit");
-const read = document.getElementById("readBoolean");
+const read = document.getElementById("cbx-15");
 const books = document.getElementById("books");
 const check = document.getElementById("check");
 
