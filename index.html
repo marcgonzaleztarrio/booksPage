@@ -9,7 +9,9 @@
   <body>
     <div class="titleBody">
       <h2 class="">Library</h2>
-      <button id="myBtn">Add new book</button>
+      <a href="#" class="button">
+        <span class="button__text" id="myBtn">Add new book</span>
+      </a>
     </div>
 
     <div id="myModal" class="modal">
@@ -33,8 +35,23 @@
               <input type="text" id="pages" />
             </div>
             <div>
-              <p>Read?</p>
-              <input type="checkbox" id="readBoolean" />
+              <div class="checkbox-wrapper-15">
+                <input
+                  class="inp-cbx"
+                  id="cbx-15"
+                  type="checkbox"
+                  style="display: none"
+                  id="readBoolean"
+                />
+                <label class="cbx" for="cbx-15">
+                  <span>
+                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                      <polyline points="1 5 4 8 11 1"></polyline>
+                    </svg>
+                  </span>
+                  <span>Read?</span>
+                </label>
+              </div>
             </div>
           </div>
         </div>

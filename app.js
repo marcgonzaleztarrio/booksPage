@@ -18,12 +18,12 @@ class Book {
   }
 
   generateHTML() {
-    const textRead = this.read ? "already read" : "not read yet";
     return `
       <div class="container">
         <div class="book">
           <div class="front">
             <div class="cover">
+            <div class="bookmark ${this.read ? "show" : "hide"}"></div>
               <p class="title">${this.title}</p>
               <p class="pages">№ of pages ${this.numPages}</p>
               <p class="author">by ${this.author}</p>
@@ -31,18 +31,18 @@ class Book {
           </div>
           <div class="left-side">
             <div class="prueba">
-              <i class="fa-solid fa-check fa-rotate-270 btn-read" style="color: #000000;" id="check"></i>
-              <i class="fa-solid fa-trash fa-rotate-270 btn-delete" style="color: #000000;" data-id="${this.id}"></i>
+              <i class="fa-solid fa-check fa-rotate-270 btn-read" style="color: #000000;" id="check" data-id="${
+                this.id
+              }"></i>
+              <i class="fa-solid fa-trash fa-rotate-270 btn-delete" style="color: #000000;" data-id="${
+                this.id
+              }"></i>
             </div>
-
             <div class="page-title">
-
               <div class="joder">
-                <span id="author">${book.title}</span>
+                <span id="author">${this.title}</span>
               </div>
-
-          </div>
-
+            </div>
           </div>
         </div>
       </div>
@@ -70,10 +70,9 @@ document.addEventListener("DOMContentLoaded", () => {
     title: "La biblia",
     author: "Satanas",
     numPages: 69696,
-    read: false,
+    read: true,
     id: Date.now(),
   };
-  console.log(loko);
 
   const numerito = (_lsTotal / 1024).toFixed(2);
 
@@ -95,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 submit.addEventListener("click", () => {
-  console.log(biblioteca);
   const newBook = new Book(
     title.value,
     author.value,
@@ -115,28 +113,51 @@ submit.addEventListener("click", () => {
 });
 
 books.addEventListener("click", (event) => {
+  deleteBook(event);
+  readBook(event);
+});
+
+let readBook = (event) => {
+  if (event.target.classList.contains("btn-read")) {
+    const checkBtn = event.target;
+    const bookId = checkBtn.getAttribute("data-id");
+    const bookToReadIndex = biblioteca.findIndex(
+      (x) => x.id === parseInt(bookId)
+    );
+
+    if (bookToReadIndex !== -1) {
+      const book = biblioteca[bookToReadIndex];
+      book.read = !book.read;
+      const bookmark =
+        checkBtn.parentNode.parentNode.parentNode.querySelector(".bookmark");
+      bookmark.style.display = book.read ? "block" : "none";
+    }
+  }
+};
+
+let deleteBook = (event) => {
   if (event.target.classList.contains("btn-delete")) {
     const deleteBtn = event.target;
     const bookId = deleteBtn.getAttribute("data-id");
     const bookIndex = biblioteca.findIndex(
       (book) => book.id === parseInt(bookId)
     );
-
     if (bookIndex !== -1) {
       biblioteca.splice(bookIndex, 1);
       saveToLocalStorage();
-      deleteBtn.parentNode.parentNode.parentNode.remove();
+      deleteBtn.parentNode.parentNode.parentNode.parentNode.parentNode.remove();
     }
   }
-});
+};
 
-function createBookElement(book) {
+let createBookElement = (book) => {
   const bookElement = document.createElement("div");
   bookElement.innerHTML = `
     <div class="container">
       <div class="book">
         <div class="front">
           <div class="cover">
+          <div class="bookmark ${book.read ? "show" : "hide"}"></div>
             <p class="title">${book.title}</p>
             <p class="pages">№ of pages ${book.numPages}</p>
             <p class="author">by ${book.author}</p>
@@ -144,8 +165,12 @@ function createBookElement(book) {
         </div>
         <div class="left-side">
           <div class="prueba">
-            <i class="fa-solid fa-check btn-read" style="color: #000000;" id="check"></i>
-            <i class="fa-solid fa-trash btn-delete" style="color: #000000;" data-id="${book.id}"></i>
+            <i class="fa-solid fa-check btn-read" style="color: #000000;" id="check" data-id="${
+              book.id
+            }"></i>
+            <i class="fa-solid fa-trash btn-delete" style="color: #000000;" data-id="${
+              book.id
+            }"></i>
           </div>
 
         <div class="page-title">
@@ -160,7 +185,7 @@ function createBookElement(book) {
   `;
 
   return bookElement;
-}
+};
 
 function saveToLocalStorage() {
   localStorage.setItem("biblioteca", JSON.stringify(biblioteca));
